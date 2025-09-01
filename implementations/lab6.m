@@ -4,10 +4,10 @@
 % ============================
 %pkg load image;
 figure;
-subplot(3,3,1)
+% subplot(3,3,1)
 img = im2double(imread('../images/cameraman.tif'));
-imshow(img);
-title('Original Image');
+% imshow(img);
+% title('Original Image');
 
 
 % ============================
@@ -25,6 +25,13 @@ subplot(3,3,3)
 reconstructed = real(ifft2(F));
 imshow(reconstructed);
 title('Reconstructed Image from DFT');
+function B = dct2(A)
+    % Apply DCT along rows
+    B = dct(A')';
+    % Apply DCT along columns
+    B = dct(B);
+end
+
 
 
 % ============================
@@ -81,13 +88,14 @@ end
 
 
 % Apply 2D DWT using Haar wavelet
-% [LL, LH, HL, HH] = dwt2(img, 'haar');
-% subplot(2,2,1), imshow(LL, []), title('Approximation (LL)');
-% subplot(2,2,2), imshow(LH, []), title('Horizontal Detail (LH)');
-% subplot(2,2,3), imshow(HL, []), title('Vertical Detail (HL)');
-% subplot(2,2,4), imshow(HH, []), title('Diagonal Detail (HH)');
+[LL, LH, HL, HH] = dwt2(img, 'haar');
+subplot(3,3,6), imshow(LL, []), title('Approximation (LL)');
+subplot(3,3,7), imshow(LH, []), title('Horizontal Detail (LH)');
+subplot(3,3,8), imshow(HL, []), title('Vertical Detail (HL)');
+subplot(3,3,9), imshow(HH, []), title('Diagonal Detail (HH)');
 
 % % Inverse DWT
-% reconstructed_dwt = idwt2(LL, LH, HL, HH, 'haar');
-% imshow(reconstructed_dwt);
-% title('Reconstructed Image from DWT');
+reconstructed_dwt = idwt2(LL, LH, HL, HH, 'haar');
+subplot(3,3,1);
+imshow(reconstructed_dwt);
+title('Reconstructed Image from DWT');
