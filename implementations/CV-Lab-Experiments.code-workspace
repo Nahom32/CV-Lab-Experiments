@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "CV-Lab-Experiments",
+			"path": ".."
+		},
+		{
+			"name": "faces",
+			"path": "../../../Downloads/faces"
+		}
+	],
+	"settings": {}
+}
